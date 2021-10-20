@@ -20,6 +20,7 @@ import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
+import AlbumScreen from "../screens/AlbumScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ModalScreen from "../screens/ModalScreen";
 import MyLibraryScreen from "../screens/MyLibraryScreen";
@@ -61,6 +62,11 @@ function RootNavigator() {
         name="Root"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AlbumScreen"
+        component={AlbumScreen}
+        options={{ title: "Album" }}
       />
       <Stack.Screen
         name="NotFound"

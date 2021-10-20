@@ -1,17 +1,35 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { album } from "../types";
 
-export type AlbumProps = {
-  album: { id: string; imageUri: string; artistsHeadline: string };
-};
-
 const Album = (props: album) => {
+  const navigation = useNavigation();
+
+  const onPress = () => {
+    console.warn(`${props.albumData.artistsHeadline} album pressed`);
+    navigation.navigate("AlbumScreen", {
+      id: props.albumData.id,
+      headline: props.albumData.artistsHeadline,
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: props.albumData.imageUri }} style={styles.image} />
-      <Text style={styles.text}>{props.albumData.artistsHeadline}</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container}>
+        <Image
+          source={{ uri: props.albumData.imageUri }}
+          style={styles.image}
+        />
+        <Text style={styles.text}>{props.albumData.artistsHeadline}</Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
